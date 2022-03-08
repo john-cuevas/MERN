@@ -14,12 +14,6 @@ class Ninja{
 
     // method to show ninja's stats
     showStats(){
-        // console.log(
-        //     `Name: ${this.constructor.name}, 
-        //     Strength: ${this.constructor.strength},
-        //     Speed: ${this.constructor.speed},
-        //     Health: ${this.constructor.health}`
-        // );
         console.log(
             `Name: ${this.name}, 
             Strength: ${this.strength},
@@ -32,7 +26,7 @@ class Ninja{
     drinkSake(){
         this.health += 10;
         console.log(
-            `${this.constructor.name}'s health is now ${this.health}`
+            `${this.name}'s health is now ${this.health}`
         )
     }
 }
@@ -47,13 +41,13 @@ class Sensei extends Ninja{
         super(name)
         this.wisdom = 10;
         this.speed = 10;
-        this.stength = 10;
-        this.health = 210;
+        this.strength = 10;
+        this.health = 200;
     }
 
     // sensei function - speak wisdom
     speakWisdom(){
-
+        super.drinkSake()
         console.log(
             "What one programmer can do in one month, two progranners can do in two months."
         );
@@ -63,4 +57,3 @@ class Sensei extends Ninja{
 const superSensei = new Sensei("Master Splinter");
 superSensei.speakWisdom();
 superSensei.showStats();
-// console.log(superSensei);
