@@ -141,3 +141,6 @@ const m5 = new M5("yellow");
 m5.childFunction();
 
 console.log(m5)
+
+
+
