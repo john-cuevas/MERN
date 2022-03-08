@@ -1,3 +1,5 @@
+// MERN Week 1 Day 1 3/7/2022
+
 // rest/spread
 
 const person = {
