@@ -24,19 +24,41 @@ const pokémon = Object.freeze([
     { "id": 148, "name": "Dragonair", "types": ["dragon"] }
 ]);
 
-const pkmnIds = pokémon.map( p => p.id )
+// id divisible by 3
 
-console.log(pkmnIds)
-
-const pkmnIds3 = pokémon.map( p => p.id ).filter(p => p.id%3 == 0);
+const pkmnIds3 = pokémon.filter(p => p.id%3 === 0);
 
 console.log(pkmnIds3)
 
+// "fire" type
+
+const firepkmn = pokémon.filter( p => p.types.includes("fire"))
+console.log(firepkmn)
+
+// more than one type
+const onepkmn = pokémon.filter( p => p.types.length > 1 )
+console.log(onepkmn)
+
+// names of pokemon
+const pkmnNames = pokémon.map( p => p.name )
+console.log(pkmnNames)
+
+// id greater than 99
+
+const pkmn_99 = pokémon.filter(p => p.id > 99)
+console.log(pkmn_99)
+
+// type only poision
+
+const poison_pkmn = pokémon.filter(p => p.types.length < 2 && p.types.includes("poison"))
+console.log(poison_pkmn)
+
+// first type of all pokemon whose second type is flying
+const flying_pkmn = pokémon.filter(p => p.types.includes("flying")).map(p => p.types[0])
+console.log(flying_pkmn)
+
+// count of normal type
+const normal_pkmn = pokémon.filter(p => p.types.length < 2 && p.types.includes("normal"))
+console.log(normal_pkmn.length)
 
 
-
-// id evenly divisible by 3
-
-// const pokemon3 = pokémon.filter()
-
-console.log(pokémon['id'])
