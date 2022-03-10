@@ -7,9 +7,6 @@ import React, { Component } from 'react'
 class PersonCard extends Component {
     constructor(props){
         super(props);
-        // this.firstName = firstName
-        // this.lastName = lastName
-        // this.hairColor = hairColor
         this.state = {
             age: this.props.age
         };
