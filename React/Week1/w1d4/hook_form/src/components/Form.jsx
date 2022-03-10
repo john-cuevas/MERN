@@ -7,13 +7,26 @@ const Form = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false)
     
 
     const createUser = (e) => {
         e.preventDefault();
         const newUser = { firstName, lastName, email, password }
         console.log("Welcome", newUser)
+    }
 
+    const formMessage = () =>{
+        if (hasBeenSubmitted){
+            return ("Thank you for submitting the form");
+        }
+        else{
+            return("Welcome, please submit the form")
+        }
+    }
+
+    const handleName = (e) =>{
+        
     }
 
     return (
