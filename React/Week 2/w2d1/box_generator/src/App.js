@@ -7,6 +7,7 @@ function App() {
   const [boxes, setBoxes] = useState([])
 
   const newBox = (newBox) =>{
+    // get all boxes
     setBoxes([...boxes, newBox])
   }
 
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <Form newBox = {newBox}/>
 
-
+      
       <div style={{ display: "flex" }}>
         {
 

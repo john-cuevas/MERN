@@ -10,15 +10,17 @@ const Form = (props) => {
     const submitBox = (e) => {
         // prevent refresh
         e.preventDefault()
+
+        // parse in string, return an integer
         const width = parseInt(size)
         if(isNaN(width)){
             setSizeError("Must type in a number")
             return;
         }
-        // previous box colors and new color
         props.newBox({color: boxColor, size: width})
         setBoxColor("")
         setSize("")
+        // resets error
         setSizeError("")
 
 
