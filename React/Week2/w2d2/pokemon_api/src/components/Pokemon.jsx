@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 // import Display from './Display'
 
 const Pokemon = (props) => {
@@ -21,7 +22,7 @@ const Pokemon = (props) => {
 
     // }
 
-    // Get all pokemon 
+    // Get all pokemon use then
 
     const useThenAll = () => {
         fetch(`https://pokeapi.co/api/v2/pokemon?limit=807`)
@@ -35,6 +36,16 @@ const Pokemon = (props) => {
                 // console.log(jsonResponse.results)
                 setPokemon(jsonResponse.results)
             })
+
+    }
+    const useAxios = () => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon?limit=807`)
+
+            .then(response => {
+                console.log(response.data.results)
+                setPokemon(response.data.results)
+            })
+            .catch (err => console.log(err))
 
     }
     // useEffect(() => {
@@ -55,6 +66,7 @@ const Pokemon = (props) => {
     return (
         <div>
             <button onClick={useThenAll}>Fetch All Pokemon with Then</button>
+            <button onClick={useAxios}>Fetch All Pokemon with Axios</button>
             <div>
                 {pokemon.length > 0 && pokemon.map((pokemon, index) => {
                     return (<div key = {index}> {pokemon.name} </div>)
