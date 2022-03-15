@@ -31,10 +31,9 @@ const InputDisplay = (props) => {
                                 <tr key={i}>
                                     <td>{i + 1}</td>
                                     <td className={
-                                        // can't get logic to work
-                                        item.completed === "true"
-                                        ? "text-decoration-line-through"
-                                        : ""
+                                        item.completed === true
+                                            ? "text-decoration-line-through"
+                                            : ""
                                     }
                                     >{item.task}</td>
                                     <td>{item.completed ? "Yes" : "No"}
