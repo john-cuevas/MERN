@@ -1,0 +1,67 @@
+- Create 'my_first_db' 
+use my_first_db
+
+- Create students collection
+db.createCollection('students')
+
+-Insert into collection 5 students
+(name, home_state, lucky_number, birthday: {month, day, year})
+
+db.students.insertOne({name: "John", home_state: "CA", lucky_number: 7, birthday:{month: 07, day: 20, year:1997}})
+
+db.students.insertMany([{name: "Patrick", home_state: "CA", lucky_number: 1, birthday:{month: 01, day: 02, year:1996}},
+{name: "Ryan", home_state: "CA", lucky_number: 11, birthday:{month: 02, day: 04, year:1996}},
+{name: "John", home_state: "WA", lucky_number: 25, birthday:{month: 05, day: 08, year:1975}},
+{name: "Catherine", home_state: "WA", lucky_number: 52, birthday:{month: 09, day: 26, year:2002}}])
+
+db.students.find()
+
+Retrieve students from CA 
+db.students.find({home_state:"CA"})
+
+Students whose lucky number > 3
+db.students.find({lucky_number:{$gt:3}})
+
+Lucky number <= 10
+db.students.find({lucky_number:{$lte:10}})
+
+Lucky number between 1 and 9
+db.students.find({$and: [{lucky_number: {$gt:1}}, {lucky_number: {$lt:9}}]})
+
+Add interests - 'coding', 'brunch', 'MongoDB'
+db.students.updateMany({}, {$addToSet:{interests: {$each:["coding", "brunch", "MongoDB"]}}})
+
+Unique interests
+db.students.updateMany({home_state:"CA"}, {$push:{interests: "golf"}})
+
+Add interest taxes to one student
+db.students.updateMany({name:"Charlie"}, {$push:{interests: "taxes"}})
+
+Remove taxes
+db.students.updateMany({name:"Charlie"}, {$pull:{interests: "taxes"}})
+
+Delete from CA
+db.students.deleteMany({home_state:"CA"})
+
+Delete by name
+db.students.deleteOne({name:"Tiger"})
+
+Remove one student lucky_number >5
+db.students.deleteOne({lucky_number:{$gt:5}})
+
+Add number of belts
+db.students.updateMany({}, {$addToSet:{number_of_belts: 0}})
+
+Increment belts by 1 WA
+db.students.updateMany({home_state:"WA"}, {$inc:{belts: 1}})
+
+Rename belts to belts_earned
+db.students.updateMany({}, {$rename: {'number_of_belts': 'belts_earned'}})
+
+Remove lucky number field
+db.students.updateMany({}, [{$unset: ['lucky_number']}])
+
+Add updated_on
+db.students.updateMany({}, {$addToSet:{updated_on: {month: 03, day: 18, year:2022}}})
+
+db.students.updateMany({}, [{$unset: ['belts']}])
