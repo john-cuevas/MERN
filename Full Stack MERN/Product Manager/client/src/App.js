@@ -2,8 +2,8 @@ import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Create from "./views/Create"
 import Dashboard from "./views/Dashboard"
-// import OneProduct from "./views/OneProduct"
-// import EditProduct from "./views/EditProduct"
+import OneProduct from "./views/OneProduct"
+import EditProduct from "./views/EditProduct"
 import './App.css';
 
 function App() {
@@ -17,6 +17,12 @@ function App() {
           </Route>
           <Route exact path = "/products/new">
             <Create/>
+          </Route>
+          <Route exact path = "/products/:id">
+            <OneProduct/>
+          </Route>
+          <Route exact path = "/products/:id/edit">
+            <EditProduct/>
           </Route>
         </Switch>
       
