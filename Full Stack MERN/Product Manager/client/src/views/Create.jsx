@@ -7,6 +7,7 @@ const Create = () => {
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
     const history = useHistory()
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -14,7 +15,15 @@ const Create = () => {
             .then(res =>{
                 history.push("/products")
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                const errorResponse = err.response.data.errors
+                const errorArr = []
+                for ( const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key]["message"])
+                }
+                console.log(errorArr)
+                setErrors(errorArr)
+            })
     }
 
     return (
@@ -40,6 +49,11 @@ const Create = () => {
                 </div>
                 <button>Submit</button>
             </form>
+            {
+                errors.map((err, i) =>(
+                    <p key = {i} style = {{color:"red"}}>{err}</p>
+                ))
+            }
         </div>
     )
 }

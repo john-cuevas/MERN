@@ -10,7 +10,7 @@ const Dashboard = () => {
         axios.get(`http://localhost:8000/api/products`)
             .then(res => setProducts(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [refresh])
 
     const handleDelete = (deleteId) => {
         axios.delete(`http://localhost:8000/api/products/${deleteId}`)
