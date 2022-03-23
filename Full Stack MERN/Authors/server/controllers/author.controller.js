@@ -17,7 +17,7 @@ module.exports.oneAuthor = (req,res) =>{
 module.exports.createAuthor = (req,res) =>{
     Author.create(req.body)
         .then(response => res.json(response))
-        .catch(err => res.json(err))
+        .catch(err => res.status(400).json(err))
 
 }
 // update
@@ -33,6 +33,6 @@ module.exports.updateAuthor = (req,res) =>{
 // delete
 module.exports.deleteAuthor = (req,res) =>{
     Author.deleteOne({_id: req.params.id})
-        .then(res => res.json(res))
-        .catch(err => res.json(err))
+        .then(response => res.json(response))
+        .catch(err => res.status(400).json(err))
 }

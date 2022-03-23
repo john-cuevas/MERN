@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom'
 const Create = () => {
     const [name, setName] = useState("")
     const history = useHistory()
-    const [error, setError] = useState("")
+    const [errors, setErrors] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -14,9 +14,19 @@ const Create = () => {
             .then(res => {
                 history.push("/")
             })
+
+            // .catch(err => {
+            //     console.log(err.response.data.errors.name.message)
+            //     setError(err.response.data.errors.name.message)
+            // })
             .catch(err => {
-                console.log(err.response.data)
-                setError(err.response.data.message)
+                const errorResponse = err.response.data.errors
+                const errorArr = []
+                for ( const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key]["message"])
+                }
+                console.log(errorArr)
+                setErrors(errorArr)
             })
     }
     return (
@@ -34,8 +44,8 @@ const Create = () => {
             </form>
 
             {
-                error &&
-                <p style = {{color:"red"}}>{error}</p>
+                errors &&
+                <p style = {{color:"red"}}>{errors}</p>
             }
             
 

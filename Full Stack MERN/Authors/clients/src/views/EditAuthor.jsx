@@ -6,7 +6,7 @@ const EditAuthor = () => {
     const {id} = useParams()
     const [name, setName] = useState("")
     const history = useHistory()
-    const [error, setError] = useState("")
+    const [errors, setErrors] = useState("")
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/authors/${id}`)
@@ -24,8 +24,13 @@ const EditAuthor = () => {
                 history.push("/")
             })
             .catch(err => {
-                console.log(err.response.data)
-                setError(err.response.data.message)
+                const errorResponse = err.response.data.errors
+                const errorArr = []
+                for ( const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key]["message"])
+                }
+                console.log(errorArr)
+                setErrors(errorArr)
             })
     }
     return (
@@ -43,8 +48,8 @@ const EditAuthor = () => {
             </form>
 
             {
-                error &&
-                <p style = {{color:"red"}}>{error}</p>
+                errors &&
+                <p style = {{color:"red"}}>{errors}</p>
             }
             
 
