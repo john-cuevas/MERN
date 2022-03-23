@@ -4,6 +4,7 @@ import Create from "./views/Create"
 import Dashboard from "./views/Dashboard"
 import OneProduct from "./views/OneProduct"
 import EditProduct from "./views/EditProduct"
+import Main from "./views/Main"
 import './App.css';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route exact path = "/products/:id/edit">
             <EditProduct/>
+          </Route>
+          <Route exact path = "/">
+            <Main/>
           </Route>
         </Switch>
       

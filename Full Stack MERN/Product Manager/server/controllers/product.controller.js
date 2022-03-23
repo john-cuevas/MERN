@@ -34,5 +34,5 @@ module.exports.updateProduct = (req,res) =>{
 module.exports.deleteProduct = (req,res) =>{
     Product.deleteOne({_id: req.params.id})
         .then(res => res.json(res))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.json(err))
 }
